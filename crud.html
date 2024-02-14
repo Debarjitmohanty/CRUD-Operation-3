@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="crud.css">
+</head>
+<body onload="readAll()">
+    <div class="container">
+        <div class="form_container">
+            <h2>Enter Details</h2>
+        <form class="create_form">
+          <label for="name">Name:</label>  
+          <input type="text" name="name" class="name" placeholder="Enter your Name" required ><br>
+          <label for="email">Email:</label> 
+          <input type="email" name="email" class="email" placeholder="Enter your Email" required>
+          <button type="button" onclick="create()">Create</button>
+          <p id="error-msg" class="error"></p>
+        </form>
+        <form class="update_form">
+          <input type="text" hidden class="id"/>
+          <label for="name">Name:</label>  
+          <input type="text" name="uname"  class="uname" /><br>
+          <label for="email">Email:</label> 
+          <input type="email" name="uemail" class="uemail"/>
+             <button type="button" onclick="update()">Update</button>
+         </form>
+         <hr>
+         <table>
+            
+            <thead>
+             <th>Name</th>
+             <th>Email</th>
+             <th>Action</th>
+            </thead>
+            <tbody class="table_data">
+
+            </tbody>  
+         </table>
+        </div>
+    </div>
+    <script src="crud.js"></script>
+    <script>
+        function create() {
+            var name = document.querySelector('.name').value.trim();
+            var email = document.querySelector('.email').value.trim();
+            var errorMessage = "";
+        
+           
+            if (name === '' || email === '') {
+                errorMessage = "Name and email are required.";
+            } else {
+                
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    errorMessage = "Invalid email address.";
+                }
+            }
+        
+          
+            if (errorMessage !== "") {
+                document.getElementById('error-msg').textContent = errorMessage;
+            } else {
+                
+                document.getElementById('error-msg').textContent = "";
+                var name = document.querySelector(".name").value;
+     var email = document.querySelector(".email").value;
+     var obj = {id: 2, name: name, email: email};
+     data.push(obj);
+     readAll();
+     document.querySelector(".name").value = "";
+     var email = document.querySelector(".email").value = "";
+
+            }
+        }
+        </script>
+</body>
+</html>
